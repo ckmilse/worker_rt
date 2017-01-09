@@ -1,0 +1,44 @@
+{
+  "name": "worker_react",
+  "version": "1.0.0",
+  "description": "react",
+  "main": "index.js",
+  "scripts": {
+    "serve": "cross-env NODE_ENV=development webpack-dev-server --open --inline --hot",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "worker",
+    "react"
+  ],
+  "author": "chenke",
+  "license": "ISC",
+  "dependencies": {
+    "comment-json": "^1.1.3",
+    "react": "^15.4.1",
+    "react-dom": "^15.4.1",
+    "react-pull-to-refresh": "^1.0.6",
+    "react-router": "^3.0.0",
+    "react-router-redux": "^4.0.7",
+    "sass-loader": "^4.1.0",
+    "string-replace-webpack-plugin": "0.0.4",
+    "transfer-webpack-plugin": "^0.1.4",
+    "vue": "^2.1.0",
+    "whatwg-fetch": "^2.0.1"
+  },
+  "devDependencies": {
+    "antd": "^2.6.0",
+    "babel-core": "^6.0.0",
+    "babel-loader": "^6.0.0",
+    "babel-preset-es2015": "^6.0.0",
+    "babel-preset-react": "^6.16.0",
+    "cross-env": "^3.0.0",
+    "css-loader": "^0.25.0",
+    "file-loader": "^0.9.0",
+    "vue-loader": "^10.0.0",
+    "vue-template-compiler": "^2.1.0",
+    "webpack": "^2.1.0-beta.25",
+    "webpack-dev-server": "^2.1.0-beta.9",
+    "whatwg-fetch": "^2.0.1"
+  }
+}
