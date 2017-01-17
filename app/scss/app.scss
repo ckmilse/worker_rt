@@ -367,13 +367,15 @@ html {
   -webkit-text-size-adjust: 100%; /* 2 */
   max-width: 420px;
   margin: 0 auto;
-  height: 100%;
+  height: auto!important;
+  min-height: 100%;
 }
 
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: auto!important;
+  min-height: 100%;
   font-family: "STHeiti","Helvetica Neue",Helvetica,Arial,sans-serif;
   background: #fafafa;
 }
