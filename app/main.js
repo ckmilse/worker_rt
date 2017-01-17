@@ -13,6 +13,8 @@ import Index from './views/index/index.jsx';
 import WantOffer from './views/wantOffer/wantOffer.jsx';
 document.documentElement.style.fontSize = (document.documentElement.offsetWidth / 10) + 'px';
 
+window.roleData = {};
+
 ReactDOM.render((
     <div>
         <Router history={hashHistory}>

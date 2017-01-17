@@ -50,6 +50,9 @@ class index_choose extends React.Component {
         console.log(e);
         console.log(workerApi);
         console.log(e.target);
+        console.log(e.target.getAttribute('roleChoose'));
+        console.log(e.target.getAttribute('data-roleChoose'));
+        window.roleData.role = e.target.getAttribute('data-roleChoose');
         workerApi.postFetch('{{chooseRoleApi}}')
             .then(function() {
                 window.location.href = '#/WantOffer';
@@ -70,10 +73,10 @@ class index_choose extends React.Component {
                                     <p className="big">
                                         请选择离你最近的职业</p>
                                     <div className="button_con">
-                                        <button className="active_choose" onClick={this.handleClick}>
+                                        <button className="active_choose" onClick={this.handleClick} data-roleChoose="1">
                                             劳务员
                                         </button>
-                                        <button onClick={this.handleClick}>
+                                        <button onClick={this.handleClick} data-roleChoose="2">
                                             砌体工
                                         </button>
                                     </div>
