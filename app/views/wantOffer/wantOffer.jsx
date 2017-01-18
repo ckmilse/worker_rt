@@ -7,18 +7,18 @@ import workerApi from './../../lib/common/workerFetch.js';
 var WorkerListItem = React.createClass({
     render() {
         return (
-            <li key={this.props.project.id}>
-                <img src={this.props.project.pic}/>
+            <li key={this.props.worker.id}>
+                <img src={this.props.worker.head}/>
                 <div className="info">
 
                     <p className="name">
-                        {this.props.project.projectName}
+                        {this.props.worker.userName || this.props.worker.nick}
                     </p>
                     <p className="workeType">
-                        {this.props.project.wokerTypeName}
+                        {this.props.worker.workTypeName || '砌砖工'}
                     </p>
                     <p className="evaluation">
-                        综合评价：<i>2342</i>
+                        综合评价：<i>{this.props.worker.hasQuantity || '0'} </i>
                     </p>
                 </div>
                 <button>
@@ -64,6 +64,8 @@ var wantOffer = React.createClass({
         }
         workerApi.postFetch(url, {}).then((resData) => {
             this.data.pList = resData.pList;
+            this.data.userList = resData.userList;
+            console.log(this.data.pList);
             //  this.state =
             this.setState({content: '123'});
             // this.componentDidUpdate();
@@ -87,6 +89,15 @@ var wantOffer = React.createClass({
             reject();
         }
     },
+    srollHandle(e) {
+        console.log(e.clientY);
+        console.log(e.offsetY);
+        console.log(e.target.scrollTop);
+        console.log(e.target.offsetHeight);
+        console.log(e.target.scrollHeight);
+
+        // console.log(e.target.children);
+    },
     componentWillMount() {
         // workerApi.postFetch('{{projectListApi}}', {}).then(function(resData) {
         //     console.log(this);
@@ -98,7 +109,7 @@ var wantOffer = React.createClass({
     },
     render() {
         return (
-            <div className="wantOffer">
+            <div className="wantOffer" onScroll={this.srollHandle}>
                 <ReactPullToRefresh onRefresh={this.handleRefresh} className="genericon genericon-nex">
                     <div className="upMore">
                         <div className="worker_topTitle">
@@ -125,12 +136,12 @@ var wantOffer = React.createClass({
                                 求职信息
                             </h3>
                             <ul>
-                                {this.data.pList.map(function(project) {
-                                    return <WorkerListItem project={project} key={project.id}/>
+                                { this.data.userList && this.data.userList.length && this.data.userList.map(function(user) {
+                                    return <WorkerListItem worker={user} key={user.id}/>
                                 })
-}
+                            }
                             </ul>
-                            {this.data.pList.length > 0
+                            {(this.data.userList && this.data.userList.length && this.data.userList.length > 0)
                                 ? <p className="tipNo">暂无更多求职人员</p>
                                 : ''}
                         </div>
@@ -139,39 +150,14 @@ var wantOffer = React.createClass({
                                 招工信息
                             </h3>
                             <ul>
-                                <li >
-                                    <div className="info">
-                                        <p className="name">
-                                            sdfsdfsdf
-                                        </p>
-                                        <p className="workeType">
-                                            sdfsdfsdf
-                                        </p>
-                                        <p className="evaluation">
-                                            综合评价：<i>3453</i>
-                                        </p>
-                                    </div>
-                                    <button >
-                                        申请
-                                    </button>
-                                </li>
-                                <li >
-                                    <div className="info">
-                                        <p className="name">
-                                            sdfsdfsdf
-                                        </p>
-                                        <p className="workeType">
-                                            sdfsdfsdf
-                                        </p>
-                                        <p className="evaluation">
-                                            综合评价：<i>3453</i>
-                                        </p>
-                                    </div>
-                                    <button >
-                                        申请
-                                    </button>
-                                </li>
+                                { this.data.pList && this.data.pList.length && this.data.pList.map(function(project) {
+                                    return <ProjectListItem project={project} key={project.id}/>
+                                })
+                            }
                             </ul>
+                            {(this.data.pList && this.data.pList.length && this.data.pList.length > 0)
+                                ? <p className="tipNo">暂无更多求职人员</p>
+                                : ''}
                             <p className="tipNo">
                                 没有招工项目
                             </p>
